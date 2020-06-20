@@ -3,22 +3,32 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
     entry: {
-        app: './src/index.js',
+        index: './src/index.js',
     },
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
+    },
+    resolve: {
+        alias: {
+            three$: 'three/build/three.min.js',
+            'three/.*$': 'three',
+        },
     },
     plugins: [
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: false
         }),
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: 'Project',
+        }),
+        new webpack.ProvidePlugin({
+            THREE: 'three'
         }),
     ],
     output: {
@@ -35,7 +45,7 @@ module.exports = {
                 'css-loader',
             ],
         }, {
-            test: /\.(png|svg|jpg|gif)$/,
+            test: /\.(png|svg|jpg|jpeg|gif)$/,
             use: [
                 'file-loader',
             ],
@@ -53,6 +63,11 @@ module.exports = {
             test: /\.xml$/,
             use: [
                 'xml-loader',
+            ],
+        }, {
+            test: /\.(gltf|glb|bin)$/,
+            use: [
+                'file-loader',
             ],
         }, ],
     },
