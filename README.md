@@ -39,6 +39,10 @@ You can recreate the data for visualisation on your website or run the server di
   http://localhost:8000/
   ```
 
+## Link
+
+[Github](https://github.com/pohsinchen/MSc-project)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
